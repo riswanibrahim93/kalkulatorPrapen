@@ -63,8 +63,8 @@
                                                 <label for="tgl_lahir" class="col-form-label pt-0"
                                                     style="color: #000; font-weight: bold;">Tgl. Lahir:</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control datepicker" id="tgl_lahir"
-                                                        onkeyup="checkInput();" placeholder="dd/mm/yyyy"
+                                                    <input type="date" class="form-control datepicker" id="tgl_lahir"
+                                                        onchange="checkInput();" placeholder="dd/mm/yyyy"
                                                         required="">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text text-black str_nas_usia"
@@ -89,8 +89,8 @@
                                                 <label for="tmt_bekerja" class="col-form-label pt-0"
                                                     style="color: #000; font-weight: bold;">TMT Bekarja:</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control datepicker" id="tmt_bekerja"
-                                                        onkeyup="checkInput();" placeholder="dd/mm/yyyy"
+                                                    <input type="date" class="form-control datepicker" id="tmt_bekerja"
+                                                        onchange="checkInput();" placeholder="dd/mm/yyyy"
                                                         required="">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text text-black str_nas_tmt"
@@ -364,10 +364,10 @@
                           <label for="tgl_proyeksi_cair" class="col-form-label pt-0"
                               style="color: #000; font-weight: bold;">Tgl. Proyeksi Cair:</label>
                           <div class="input-group">
-                            <input type="text" class="form-control datepicker" id="tgl_proyeksi_cair"
+                            <input type="date" class="form-control datepicker" id="tgl_proyeksi_cair"
                                   placeholder="dd/mm/yyyy" value="" 
-                                  required="" onkeyup="checkInputPrapen();">
-                            <button type="button" id="btn_hitung" onclick="checkDay()" class="btn btn-secondary" style="font-size: 10px">Now</button>
+                                  required="" onchange="checkInputPrapen();">
+                            <!-- <button type="button" id="btn_hitung" onclick="checkDay()" class="btn btn-secondary" style="font-size: 10px">Now</button> -->
                           </div>
                           <div class="input-group mb-3">
                               
@@ -898,6 +898,8 @@
       // usia
       TanggalLahir = $('#tgl_lahir').val();
       if (TanggalLahir == "") return false;
+      arr_tgl = TanggalLahir.split('-')
+      TanggalLahir = arr_tgl[2]+'/'+arr_tgl[1]+'/'+arr_tgl[0]
       usia = hitungUsia(TanggalLahir);
       let arr_usia = usia.split('/');
       let Usia = new Date(arr_usia[2], arr_usia[1], arr_usia[0]);
@@ -911,6 +913,8 @@
       // masa kerja
       TMTBekerja = $('#tmt_bekerja').val();
       if (TMTBekerja == "") return false;
+      arr_tgl = TMTBekerja.split('-')
+      TMTBekerja = arr_tgl[2]+'/'+arr_tgl[1]+'/'+arr_tgl[0]
       tmt = hitungUsia(TMTBekerja);
       let arr_tmt = tmt.split('/');
       let Tmt = new Date(arr_tmt[2], arr_tmt[1], arr_tmt[0]);
@@ -1048,29 +1052,29 @@
       console.log(MasaKerja)      
     }
 
-    function today(){
-      today = new Date()
-      var dd = today.getDate();
-      var mm = today.getMonth()+1; 
-      var yyyy = today.getFullYear();
-      if(dd<10) 
-      {
-          dd='0'+dd;
-      } 
+    // function today(){
+    //   today = new Date()
+    //   var dd = today.getDate();
+    //   var mm = today.getMonth()+1; 
+    //   var yyyy = today.getFullYear();
+    //   if(dd<10) 
+    //   {
+    //       dd='0'+dd;
+    //   } 
 
-      if(mm<10) 
-      {
-          mm='0'+mm;
-      } 
-      today = dd+'/'+mm+'/'+yyyy;
-      return today
-    }
+    //   if(mm<10) 
+    //   {
+    //       mm='0'+mm;
+    //   } 
+    //   today = dd+'/'+mm+'/'+yyyy;
+    //   return today
+    // }
 
-    function checkDay(){
-      today = today()
-      $("#tgl_proyeksi_cair").val(today)
-      checkInputPrapen()
-    }
+    // function checkDay(){
+    //   today = today()
+    //   $("#tgl_proyeksi_cair").val(today)
+    //   checkInputPrapen()
+    // }
 
 
     function hitungUsia(tanggal) {
@@ -1245,6 +1249,8 @@
       // cek tanggal cair
       TglProyeksiCair = $('#tgl_proyeksi_cair').val();
       if (TglProyeksiCair == "") return false;
+      arr_tgl = TglProyeksiCair.split('-')
+      TglProyeksiCair = arr_tgl[2]+'/'+arr_tgl[1]+'/'+arr_tgl[0]
       JangkaWaktu = $('#tenor').val();
       sisaPensiun(TanggalPensiun, TglProyeksiCair)
 
