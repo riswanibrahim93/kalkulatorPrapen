@@ -1,0 +1,2294 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <title>API</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content-manfaat-pensiun">
+          <div class="row mt-sm-4">
+              <div class="col-lg-6">
+                  <div class="row">
+                      <div class="col-md-12 simulasi_pembiayaan">
+                          <div class="card">
+                              <div class="card-header bg-warning text-white">
+                                  <h5 class="card-title">Estimasi Manfaat Pensiun</h5>
+                              </div>
+                              <div class="card-body">
+                                  <form id="form-calculator">
+                                      <div class="mb-3">
+                                          <div class="row mb-3">
+                                              <div class="col-md-6">
+                                                  <label for="nama_nasabah" class="col-form-label pt-0"
+                                                      style="color: #000; font-weight: bold;">Nama Nasabah:</label>
+                                                  <input style="height: 46px;" type="text" class="form-control"
+                                                      id="nama_nasabah" required="">
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <label for="instansi" class="col-form-label pt-0"
+                                                      style="color: #000; font-weight: bold;">Instansi:</label>
+                                                  <input style="height: 46px;" type="text" class="form-control"
+                                                      id="instansi" required="" onkeyup="checkInput();">
+                                              </div>
+                                          </div>
+                                          <div class="row mb-3">
+                                              <div class="col-md-6">
+                                                  <label for="no_taspen" class="col-form-label pt-0"
+                                                      style="color: #000; font-weight: bold;">No.Taspen:</label>
+                                                  <input style="height: 46px;" type="text" class="form-control"
+                                                      id="no_taspen" required="" onkeyup="checkInput();">
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <label for="jk" class="col-form-label pt-0"
+                                                      style="color: #000; font-weight: bold;">Jenis Kelamin:</label>
+                                                  <select style="height: 46px;" type="text" class="form-control"
+                                                      id="jk" required="" onkeyup="checkInput();">
+                                                    <option selected>-- pilih jenis kelamin --</option>
+                                                    <option value="Laki-laki">Laki-laki</option>
+                                                    <option value="Perempuan">Perempuan</option>
+                                                  </select>
+                                              </div>
+                                          </div>
+                                          <div class="row mb-3">
+                                              <div class="col-md-6">
+                                                <label for="tgl_lahir" class="col-form-label pt-0"
+                                                    style="color: #000; font-weight: bold;">Tgl. Lahir:</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control datepicker" id="tgl_lahir"
+                                                        onkeyup="checkInput();" placeholder="dd/mm/yyyy"
+                                                        required="">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text text-black str_nas_usia"
+                                                            style="padding-left:5px; padding-right:5px; font-weight: bold;">
+                                                            ~ Thn ~ Bln</div>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <label for="status_nikah" class="col-form-label pt-0"
+                                                      style="color: #000; font-weight: bold;">Status Nikah:</label>
+                                                  <select style="height: 46px;" type="text" class="form-control"
+                                                      id="status_nikah" required="" onkeyup="checkInput();">
+                                                    <option selected>-- pilih status --</option>
+                                                    <option value="Menikah">Menikah</option>
+                                                    <option value="Belum">Belum Menikah</option>
+                                                  </select>
+                                              </div>
+                                          </div>
+                                          <div class="row mb-3">
+                                              <div class="col-md-6">
+                                                <label for="tmt_bekerja" class="col-form-label pt-0"
+                                                    style="color: #000; font-weight: bold;">TMT Bekarja:</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control datepicker" id="tmt_bekerja"
+                                                        onkeyup="checkInput();" placeholder="dd/mm/yyyy"
+                                                        required="">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text text-black str_nas_tmt"
+                                                            style="padding-left:5px; padding-right:5px; font-weight: bold;">
+                                                            ~ Thn</div>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <label for="jumlah_anak" class="col-form-label pt-0"
+                                                      style="color: #000; font-weight: bold;">Jumlah Anak:</label>
+                                                  <select style="height: 46px;" type="text" class="form-control"
+                                                      id="jumlah_anak" required="" onkeyup="checkInput();">
+                                                    <option selected value="0">-- pilih jumlah anak --</option>
+                                                    <option value="0" >0</option>
+                                                    <option value="1" >1</option>
+                                                    <option value="2" >2</option>
+                                                    <option value="3" >3</option>
+                                                    <option value="4" >4</option>
+                                                  </select>
+                                              </div>
+                                          </div>
+                                          <div class="row mb-3">
+                                              <div class="col-md-6">
+                                                  <label for="tahun_BUP" class="col-form-label pt-0"
+                                                      style="color: #000; font-weight: bold;">Tahun BUP:</label>
+                                                  <input style="height: 46px;" type="text" class="form-control"
+                                                      id="tahun_BUP" required="" onkeyup="checkInput();">
+                                              </div>
+                                              <div class="col-md-6">
+                                                  <label for="gapok" class="col-form-label pt-0"
+                                                      style="color: #000; font-weight: bold;">Gapok Saat Ini:</label>
+                                                  <div class="input-group mb-3">
+                                                      <div class="input-group-prepend">
+                                                          <div class="input-group-text text-black"
+                                                              style="height: 46px; padding-left:5px; padding-right:5px; font-weight: bold;">
+                                                              Rp.</div>
+                                                      </div>
+                                                      <input style="height: 46px;" type="text" class="form-control"
+                                                      id="gapok" required="" onkeyup="checkInput();">
+
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="text-right">
+                                          <button type="button" id="btn_hitung_akseptasi" onclick="hitung()"
+                                              class="btn btn-primary btn-lg">Hitung</button>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-6">
+                  <div class="searchable_card card">
+                      <div class="row">
+                          <div class="col-md-12 spinner_container" style="display: none">
+                              <div class="spinner">
+                                  <div class="rotate"></div>
+                              </div>
+                              <div class="spinner-text">
+                                  <p>Sedang memuat...</p>
+                              </div>
+                          </div>
+                          <div class="col-md-12 content_container" style="display: block">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="card-header row">
+                                        <div class="card-header bg-success text-white">
+                                                <h5 class="card-title">Tabel Hasil Manfaat Pensiun</h5>
+                                            </div>
+                                          <div class="mb-2 col-md-12">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Pokok Pensiun:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_pokok_pensiun">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-12">
+                                              <h5 class="card-title" style="color: #000;">Tunjangan:</h5>
+                                          </div>
+                                          <div class="mb-2 col-md-4">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Istri:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_istri">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                          <div class="mb-2 col-md-4">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Anak:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_anak">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                          <div class="mb-2 col-md-4">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Beras:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_beras">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-12">
+                                              <hr>
+                                          </div>
+                                          <div class="col-md-12">
+                                              <div class="row">
+                                                  <div class="mb-2 col-md-4">
+                                                  </div>
+                                                  <div class="mb-2 col-md-4">
+                                                  </div>
+                                                  <div class="mb-2 col-md-4">
+                                                      <label for="setor" class="col-form-label pt-0"
+                                                          style="color: #000; font-weight: bold;">Biaya Askes:</label>
+                                                      <div class="input-group mb-1">
+                                                          <p id="str_biaya_askes">Rp. ~</p>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-12">
+                                              <hr>
+                                          </div>
+                                          <div class="mb-2 col-md-4">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">TMT pensiun:</label>
+                                              <div class="input-group mb-1 text-center">
+                                                  <p id="str_tmt_pensiun"></p>
+                                              </div>
+                                          </div>
+                                          <div class="mb-2 col-md-4">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Batas Usia Pensiun:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_batas_usia"></p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-12">
+                                              <hr>
+                                          </div>
+                                          <div class="mb-2 col-md-6">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Total Manfaat Pensiun:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_manfaat_pensiun">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                          <div class="mb-2 col-md-6">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Note:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_note"></p>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="content-input-prapen">
+        <form id="form-input-biaya">  
+          <div class="row mt-sm-4">              
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="card-title">Data Pembiayaan</h5>
+                </div>
+                <div class="card-body">
+                  <div class="mb-3">
+                      <div class="row">
+                          <div class="col-md-6 mb-3">
+                              <label for="model_angsuran" class="col-form-label pt-0"
+                                  style="color: #000; font-weight: bold;">Model Angsuran:</label>
+                              <select style="height: 46px;" type="text" class="form-control"
+                                  id="model_angsuran" required="" onclick="checkInputPrapen();">
+                                <option selected>-- pilih model --</option>
+                                <option value="R">Prapen 5 Tahun</option>
+                                <option value="D">Prapen 2 Tahun</option>
+                              </select>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                              <label for="status_payroll" class="col-form-label pt-0"
+                                  style="color: #000; font-weight: bold;">Status Payroll:</label>
+                              <select style="height: 46px;" type="text" class="form-control"
+                                  id="status_payroll" required="" onclick="keyUpStatus()">
+                                <option selected>-- pilih status --</option>
+                                <option id="status1" value="P">Payroll</option>
+                                <option id="status2" value="C">Comitted Payroll</option>
+                                <option value="N">Non Payroll</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-6 mb-3">
+                              <label for="maskapai" class="col-form-label pt-0"
+                                  style="color: #000; font-weight: bold;">Maskapai Asuransi:</label>
+                              <select style="height: 46px;" type="text" class="form-control"
+                                  id="maskapai" required="">
+                                <option selected>-- pilih maskapai --</option>
+                                <option value="1">Al Amin</option>
+                                <option value="2">Jasindo Syariah</option>
+                                <option value="3">Jamkrido Syariah</option>
+                                <option value="4">Askrido Syariah</option>
+                                <option value="5">Askrida Syariah</option>
+                                <option value="6">Takaful</option>
+                              </select>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                              <label for="tipe_atribusi" class="col-form-label pt-0"
+                                  style="color: #000; font-weight: bold;">Tipe Atribusi:</label>
+                              <select style="height: 46px;" type="text" class="form-control"
+                                  id="tipe_atribusi" required="" onclick="keyUpAtribusi()">
+                                <option selected>-- pilih atribusi --</option>
+                                <option value="1" id="atribusi1">REGULER (NO ATRIB)</option>
+                                <option value="2" id="atribusi2">PLAFOND + FEE MITRA</option>
+                                <option value="3" id="atribusi3">PLAFOND + FEE ASURANSI</option>
+                                <option value="4" id="atribusi4">PLAFOND + PINALTI</option>
+                                <option value="5" id="atribusi5">PLAFOND + FEE MITRA + FEE ASURANSI</option>
+                                <option value="6" id="atribusi6">PLAFOND + FEE ASURANSI + PINALTI</option>
+                                <option value="7" id="atribusi7">PLAFOND + FEE MITRA + PINALTI</option>
+                                <option value="8" id="atribusi8">ALL COVER</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                            <label for="prosen_gaji" class="col-form-label pt-0"
+                                style="color: #000; font-weight: bold;">Prosentase Gaji Pokok(%):</label>
+                            <div class="input-group mb-2">
+                                <input type="number" min="0" max="100" class="form-control"
+                                    id="prosen_gaji" required="" onkeyup="checkInputPrapen();">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-black"
+                                        style="padding-left:5px; padding-right:5px; font-weight: bold;">
+                                        %</div>
+                                </div>
+                            </div>                               
+                        </div>
+                        <div class="col-md-6">
+                            <label for="prosen_pensiun" class="col-form-label pt-0"
+                                style="color: #000; font-weight: bold;">Prosentase Manfaat Pensiun(%):</label>
+                            <div class="input-group mb-2">
+                                <input type="number" min="0" max="100" class="form-control"
+                                    id="prosen_pensiun" required="" onkeyup="checkInputPrapen();">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-black"
+                                        style="padding-left:5px; padding-right:5px; font-weight: bold;">
+                                        %</div>
+                                </div>
+                            </div>  
+                            <small style="display:none;" id="less_persentase_manfaat_pensiun" class="text_info form-text text-danger">*Tidak boleh kurang dari 1%</small>
+                            <small style="display:none;" id="more_persentase_manfaat_pensiun" class="text_info form-text text-danger">*Tidak boleh lebih dari 90%</small>
+                            <small class="form-text"><p>(persentase manfaat pensiun perbulan untuk angsuran. Max. 90%)</p></small>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 mb-3">
+                          <label for="setor" class="col-form-label pt-0"
+                            style="color: #000; font-weight: bold;">Tgl. Pensiun:</label>
+                          <div class="input-group mb-1">
+                            <p id="str_tgl_pensiun"></p>
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="tgl_proyeksi_cair" class="col-form-label pt-0"
+                              style="color: #000; font-weight: bold;">Tgl. Proyeksi Cair:</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control datepicker" id="tgl_proyeksi_cair"
+                                  placeholder="dd/mm/yyyy" value="" 
+                                  required="" onkeyup="checkInputPrapen();">
+                            <button type="button" id="btn_hitung" onclick="checkDay()" class="btn btn-secondary" style="font-size: 10px">Now</button>
+                          </div>
+                          <div class="input-group mb-3">
+                              
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="tenor" class="col-form-label pt-0"
+                                style="color: #000; font-weight: bold;">Tenor(Bulan):</label>
+                            <div class="input-group mb-2">
+                                <input style="" type="text" class="form-control"
+                                id="tenor" required="" onkeyup="checkInputPrapen();">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-black"
+                                        style="padding-left:5px; padding-right:5px; font-weight: bold;">
+                                        max <span class="str_max_tenor">: ~ Bln</span></div>
+                                </div>
+                            </div>
+                            
+                            <small style="display:none;" id="less_tenor"
+                                class="text_info form-text text-danger">*Tidak boleh kurang dari 1
+                                bulan</small>
+                            <small style="display:none;" id="more_tenor" class="text_info form-text text-danger">*Tidak boleh lebih dari <span class="str_max_tenor">~</span> bulan</small>
+                        </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-6 mb-3">
+                              <label for="ang_bsm" class="col-form-label pt-0"
+                                  style="color: #000; font-weight: bold;">Angsuran BSM:</label>
+                              <div class="input-group mb-2">
+                                  <div class="input-group-prepend">
+                                      <div class="input-group-text text-black"
+                                          style="padding-left:5px; padding-right:5px; font-weight: bold;">
+                                          Rp. </div>
+                                  </div>
+                                  <input type="text" class="form-control"
+                                      id="ang_bsm" required="" onkeyup="checkInputPrapen();" value="0">
+                              </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                              <label for="ang_no_bsm" class="col-form-label pt-0"
+                                  style="color: #000; font-weight: bold;">Angsuran Selain BSM:</label>
+                              <div class="input-group mb-2">
+                                  <div class="input-group-prepend">
+                                      <div class="input-group-text text-black"
+                                          style="padding-left:5px; padding-right:5px; font-weight: bold;">
+                                          Rp. </div>
+                                  </div>
+                                  <input type="text" class="form-control"
+                                      id="ang_no_bsm" required="" onkeyup="checkInputPrapen();" value="0">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="card-title">Input Biaya</h5>
+                </div>
+                <div class="card-body">
+                  <div class="mb-3">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="price_sebelum" class="col-form-label pt-0"
+                                style="color: #000; font-weight: bold;">Price Sebelum Pensiun:</label>
+                            <div class="input-group mb-2">
+                                <input type="number" min="0" max="100" class="form-control"
+                                    id="price_sebelum" required="" onkeyup="checkInputPrapen();" value="0">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-black"
+                                        style="padding-left:5px; padding-right:5px; font-weight: bold;">
+                                        %</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="price_setelah" class="col-form-label pt-0"
+                                style="color: #000; font-weight: bold;">Price Setelah Pensiun:</label>
+                            <div class="input-group mb-2">
+                                <input type="number" min="0" max="100" class="form-control"
+                                    id="price_setelah" required="" onkeyup="checkInputPrapen();" value="0">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-black"
+                                        style="padding-left:5px; padding-right:5px; font-weight: bold;">
+                                        %</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                          <label for="price_jk" class="col-form-label pt-0"
+                              style="color: #000; font-weight: bold;">Jasa Kelola:</label>
+                          <div class="input-group mb-2">
+                              <input type="number" min="0" max="100" class="form-control"
+                                  id="price_jk" required="" onkeyup="checkInputPrapen();" value="0">
+                              <div class="input-group-prepend">
+                                  <div class="input-group-text text-black"
+                                      style="padding-left:5px; padding-right:5px; font-weight: bold;">
+                                      %</div>
+                              </div>
+                          </div>                          
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="rate_asuransi" class="col-form-label pt-0"
+                                style="color: #000; font-weight: bold;">Rate Asuransi (%):</label>
+                            <div class="input-group mb-2">
+                                <input type="number" min="0" max="100" class="form-control"
+                                    id="rate_asuransi" required="" onkeyup="checkInputPrapen();">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-black"
+                                        style="padding-left:5px; padding-right:5px; font-weight: bold;">
+                                        %</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="fee" class="col-form-label pt-0"
+                                style="color: #000; font-weight: bold;">Fee Mitra/Fronting (%):</label>
+                            <div class="input-group mb-2">
+                                <input type="number" min="0" max="100" class="form-control"
+                                    id="fee" required="" onkeyup="checkInputPrapen();">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-black"
+                                        style="padding-left:5px; padding-right:5px; font-weight: bold;">
+                                        %</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">                        
+                        <div class="col-md-6">
+                            <label for="biaya_pinalti" class="col-form-label pt-0"
+                                style="color: #000; font-weight: bold;">Biaya Pinalti:</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                  <div class="input-group-text text-black"
+                                      style="height: 46px; padding-left:5px; padding-right:5px; font-weight: bold;">
+                                      Rp. </div>
+                              </div>
+                              <input style="height: 46px;" type="text" class="form-control" id="biaya_pinalti" required="" value="0" onkeyup="checkInputPrapen();">
+                            </div>
+                            <small style="display:none;" id="less_pinalti"
+                              class="text_info form-text text-danger">*Tidak boleh kurang dari Rp.
+                              0</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="biaya_flagging" class="col-form-label pt-0"
+                                style="color: #000; font-weight: bold;">Biaya Flagging:</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend">
+                                  <div class="input-group-text text-black"
+                                      style="height: 46px; padding-left:5px; padding-right:5px; font-weight: bold;">
+                                      Rp. </div>
+                              </div>
+                              <input style="height: 46px;" type="text" class="form-control" id="biaya_flagging" required="" value="0">
+                              <button type="button" id="btn_hitung" onclick="checkBiayaFlagging()" class="btn btn-secondary" style="font-size: 10px">Cek Flagging</button>
+                            </div>
+                            <small style="display:none;" id="less_flagging"
+                                class="text_info form-text text-danger">*Tidak boleh kurang dari Rp. 0 (Klik Cek Flagging)</small>
+                            <span><p style="font-size: 10px" class="text-secondary">Biaya Flagging saat ini sebesar (38rb X tenor 1th) + 30rb</p></span> 
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-12 mb-3">
+                            <label for="plafond_TU" class="col-form-label pt-0"
+                                style=" color: #000; font-weight: bold;">Plafond Pembiayaan:</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-black"
+                                        style="padding-left:5px; padding-right:5px; font-weight: bold;">
+                                        Rp.</div>
+                                </div>
+                                <input style="" value="0" type="text" class="form-control"
+                                id="plafond_TU" required="" onkeyup="checkInputPrapen();">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-black"
+                                        style=" padding-left:5px; padding-right:5px; font-weight: bold;">
+                                        max <span class="str_max_plafon">: Rp. ~</span></div>
+                                </div>
+                            </div>
+                            <small style="display:none;" id="less_plafon"
+                                class="text_info form-text text-danger">*Tidak boleh kurang dari Rp.
+                                1.000.000</small>
+                            <small style="display:none;" id="more_plafon"
+                                class="text_info form-text text-danger">*Tidak boleh lebih dari <span
+                                    class="str_max_plafon">Rp. ~</span></small>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="plafond_TO" class="col-form-label pt-0"
+                                style="color: #000; font-weight: bold;">Plafond Take Over:</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-black"
+                                        style="padding-left:5px; padding-right:5px; font-weight: bold;">
+                                        Rp.</div>
+                                </div>
+                                <input style="" value="0" type="text" class="form-control" id="plafond_TO" required="" onkeyup="checkInputPrapen();">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-black"
+                                        style=" padding-left:5px; padding-right:5px; font-weight: bold;">
+                                        max<span class="str_max_plafon_take_over">: Rp. ~</span></div>
+                                </div>
+                            </div>
+                            <small style="display:none;" id="more_plafon_take_over"
+                                class="text_info form-text text-danger">*Tidak boleh lebih dari <span
+                                    class="str_max_plafon_take_over">Rp. ~</span></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="button" id="btn_hitung_prapen" onclick="hitungPrapen()"
+                        class="btn btn-primary btn-lg">Hitung</button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="content-output-prapen">
+        <div class="row mt-sm-4">
+          <div class="col-lg-12">
+                  <div class="searchable_card card">
+                      <div class="row">
+                          <div class="col-md-12 spinner_container" style="display: none">
+                              <div class="spinner">
+                                  <div class="rotate"></div>
+                              </div>
+                              <div class="spinner-text">
+                                  <p>Sedang memuat...</p>
+                              </div>
+                          </div>
+                          <div class="col-md-12 content_container" style="display: block">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="card-header py-0 row">
+                                          <div class="col-md-12 bg-primary text-white">
+                                              <div class="card-header py-0 row">
+                                                  <div class="col-7 px-0 text-left">
+                                                      <h5 class="str_card_title">Hasil Dengan BSM Pra Pensiun</h5>
+                                                  </div>
+                                                  <!-- <div class="col-5 px-0 text-right">
+                                                      <button class="btn btn-info btn_cetak" style="display:none;"><i
+                                                              class="fa fa-print"></i> Cetak</button>
+                                                  </div> -->
+                                              </div>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Angs. Total Pra Pensiun:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_angs_pra"></p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Angs. Total Pasca Pensiun:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_angs_pasca"></p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Sisa Usia Pensiun (Bulan):</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_sisa_usia_pensiun"></p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Jangka Waktu (Bulan):</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_jangka_waktu"></p>
+                                              </div>
+                                          </div>
+
+                                          
+                                          <div class="col-md-12">
+                                              <hr>
+                                          </div>
+                                          <div class="col-md-12">
+                                              <h5 class="card-title" style="color: #000;">Biaya Akuisisi:</h5>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Nilai Limit Coverage Asuransi:</label>
+                                              <div class="input-group mb-1 text-center">
+                                                  <p id="str_nilai_limit">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Biaya Asuransi:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_biaya_asuransi">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Biaya Fee Mitra/Fronting:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_biaya_fee">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Biaya Flagging:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_biaya_flagging">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Biaya Pinalti:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_biaya_pinalti">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <label for="setor" class="col-form-label pt-0"
+                                              style="color: #000; font-weight: bold;">Biaya Total:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_biaya_total">Rp. ~</p>
+                                              </div>
+                                          </div>  
+                                          <div class="col-md-3">
+                                              
+                                          </div>                                      
+                                          <div class="col-md-3">
+                                              <label for="str_jml_blokir_angs" id="str_jml_blokir_angs_label" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Jumlah Blokir Angsuran:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_jml_blokir_angs">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-12">
+                                              <hr>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Biaya Atribusi Bank:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_biaya_atribusi_bank">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Biaya Atribusi Nasabah:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_biaya_atribusi_nasabah">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Biaya Atribusi Total:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_biaya_atribusi_total">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Biaya Awal Nasabah:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_biaya_awal_nasabah">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-12">
+                                              <hr>
+                                              <h5 class="card-title" style="color: #000;">Price:</h5>
+                                          </div>
+                                          <div class="col-md-4">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Price Atrib Pra Pensiun:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_price_pra"></p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-4">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Price Atrib Pra Pensiun + Jasa kelola:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_price_pra_jk"></p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-4">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Price Atrib Pasca Pensiun:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_price_pasca"></p>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+        </div>
+        <div class="row mt-sm-4">
+          <div class="col-lg-12">
+                  <div class="searchable_card card">
+                      <div class="row">
+                          <div class="col-md-12 spinner_container" style="display: none">
+                              <div class="spinner">
+                                  <div class="rotate"></div>
+                              </div>
+                              <div class="spinner-text">
+                                  <p>Sedang memuat...</p>
+                              </div>
+                          </div>
+                          <div class="col-md-12 content_container" style="display: block">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="card-header py-0 row">
+                                          <div class="col-md-12 bg-primary text-white">
+                                              <div class="card-header py-0 row">
+                                                  <div class="col-7 px-0 text-left">
+                                                      <h5 class="str_card_title">Hasil Tanpa BSM Pra Pensiun</h5>
+                                                  </div>
+                                                  <!-- <div class="col-5 px-0 text-right">
+                                                      <button class="btn btn-info btn_cetak" style="display:none;"><i
+                                                              class="fa fa-print"></i> Cetak</button>
+                                                  </div> -->
+                                              </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Total Maksimal Pembiayaan:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_total_max_pembiayaan_tanpa">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Jangka Waktu (Bulan):</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_jangka_waktu_tanpa"></p>
+                                              </div>
+                                          </div>
+                                          <div class="col-md-3">
+                                              <label for="setor" class="col-form-label pt-0"
+                                                  style="color: #000; font-weight: bold;">Angsuran:</label>
+                                              <div class="input-group mb-1">
+                                                  <p id="str_angs_tanpa">Rp. ~</p>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+        </div>
+      </div> 
+      <div class="content-card-note">
+        <div class="card text-dark bg-light mb-5 mt-3">
+          <div class="card-header bg-warning text-white text-center fw-bold">Note</div>
+          <div class="card-body">
+            <ul>
+              <li>Nasabah memperoleh penawaran pembiayaan Take over sebesar <span id="note_TO"></span></li>
+              <li>Nasabah memperoleh penawaran pembiayaan <span id="note_ifTU"></span> sebesar <span id="note_TU"></span></li>
+              <li>THP nasabah/Nett yang diterima nasabah sebesar <span id="note_THP">
+              <li>Nominal Limit Coverage Asuransi sebesar <span id="note_converage_asuransi"></span></li>
+              <li>Biaya Atribusi Nasabah Sebesar <span id="note_biaya_atribusi_nasabah"></span></li></li>
+              <li>Biaya Awal Nasabah Sebesar <span id="note_biaya_awal_nasabah"></li>
+              <li>Angsuran PraPensiun Nasabah Sebesar <span id="note_angs_prapen"></li>
+              <li>Sisa Gaji PraPensiun Nasabah Sebesar <span id="note_sisa_gaji_prapen"></li>
+              <li>Angsuran PascaPensiun Nasabah Sebesar <span id="note_angs_pen"></li>
+              <li>Sisa Gaji PascaPensiun Nasabah Sebesar <span id="note_sisa_gaji_pen"></li>
+              <li>Cash On Hands Nasabah (termasuk take over) sebesar <span id="note_cash_on_hand"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- script -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+
+    let NamaNasabah
+    let Pokok
+    let Status
+    let JmlAnak
+    let Tahun_BUP
+
+    let PokokPensiun
+    let TunjanganIstri
+    let TunjanganBeras
+    let PotonganAskes
+    let ManfaatPensiun
+
+    let TanggalLahir
+    let TMTBekerja
+    let MasaKerja
+    let TMTPensiun
+    let BatasUsiaPensiun
+    let Note
+    let TanggalPensiun
+
+    $('#btn_hitung_akseptasi').prop('disabled', true);
+
+    function checkInput() {
+      NamaNasabah = $('#nama_nasabah').val()
+
+      Pokok = $('#gapok').val()
+      $('#gapok').val(formatRupiah(Pokok))
+
+      // usia
+      TanggalLahir = $('#tgl_lahir').val();
+      if (TanggalLahir == "") return false;
+      usia = hitungUsia(TanggalLahir);
+      let arr_usia = usia.split('/');
+      let Usia = new Date(arr_usia[2], arr_usia[1], arr_usia[0]);
+      let yearUsia = Usia.getYear();
+      let monthUsia = Usia.getMonth();
+      let dayUsia = Usia.getDate();
+      if(dayUsia > 15 )
+        monthUsia += 1
+      $('.str_nas_usia').text(`${yearUsia} Thn ${monthUsia} Bln`);
+
+      // masa kerja
+      TMTBekerja = $('#tmt_bekerja').val();
+      if (TMTBekerja == "") return false;
+      tmt = hitungUsia(TMTBekerja);
+      let arr_tmt = tmt.split('/');
+      let Tmt = new Date(arr_tmt[2], arr_tmt[1], arr_tmt[0]);
+      masaKerja = Tmt.getYear()
+      MasaKerja = Math.floor((Tmt.getMonth()*30 + Tmt.getDate())/360*100)/100
+      MasaKerja += masaKerja
+      // console.log(MasaKerja)
+
+      $('.str_nas_tmt').text(`${masaKerja} Thn`);
+
+      Pokok = $('#gapok').val()
+      if(Pokok == "") return false;
+      Pokok = $('#gapok').val()
+      Pokok = findAndReplace(Pokok, ".", "")
+
+      // // JmlAnak = $('#jumlah_anak').val()
+      // if(JmlAnak == "") return false;      
+      JmlAnak = 0
+      Status = $('#status_nikah').val()
+      if(Status == "") return false;
+      Tahun_BUP = $('#tahun_BUP').val()
+      if(Tahun_BUP == "") return false;
+
+      $('#btn_hitung_akseptasi').prop('disabled', false);
+
+    }
+
+    function pensiunPokok(pokok, masa_kerja){
+      if(masa_kerja < 10)
+      {
+        PokokPensiun = 0
+      }
+      else if(masa_kerja < 30)
+      {
+        a = (25/1000)*(pokok*masa_kerja);
+        b = (40/100)*pokok
+        PokokPensiun = Math.max(a,b)
+      }
+      else
+      {
+        PokokPensiun = 75/100*pokok
+      }
+    }
+
+    function manfaatPensiun(status, jml_anak, pokok_pensiun){
+
+      // Tunjangan Istri
+      if(Status == 'Menikah')
+      {
+        StatusTunjangan = 10/100
+        TB = 1
+      }
+      else
+      {
+        StatusTunjangan = 0
+        TB = 0
+      }
+      TunjanganIstri = PokokPensiun*StatusTunjangan
+
+      // TunjanganAnak
+      
+      TunjanganAnak = JmlAnak*2/100*PokokPensiun
+
+      // TunjanganBeras
+      if(PokokPensiun == 0)
+      {
+        TunjanganBeras = 0
+      }
+      else
+      {
+        TunjanganBeras = TB + (JmlAnak*0) + 1
+      }
+      TunjanganBeras = TunjanganBeras*72420
+
+      // Potongan Askes
+      PotonganAskes = (2/100)*(PokokPensiun+TunjanganAnak+TunjanganIstri)
+
+      // Dana pensiun
+      ManfaatPensiun = Math.round(PokokPensiun+TunjanganIstri+TunjanganBeras-PotonganAskes)
+    }
+
+
+    function tmtPensiun(tahun_bup, tanggal_lahir){
+      let arr_tanggalLahir = tanggal_lahir.split('/');
+
+      yearLahir = arr_tanggalLahir[2]
+      monthlahir = arr_tanggalLahir[1]
+
+      if(monthlahir == 12){
+        TMTPensiunMonth = 1
+        TMTPensiunYear = parseInt(tahun_bup)+1
+      }
+      else{
+        TMTPensiunMonth = parseInt(monthlahir)+1
+        TMTPensiunYear = parseInt(tahun_bup)
+      }
+      TMTPensiunDay = 1
+      
+      TMTPensiun = TMTPensiunDay+'-'+TMTPensiunMonth+'-'+TMTPensiunYear
+
+      TanggalPensiun = arr_tanggalLahir[0]+'/'+arr_tanggalLahir[1]+'/'+tahun_bup
+      
+      BatasUsiaPensiun = tahun_bup - yearLahir
+    }
+
+    function note(masa_kerja, nama_nasabah, manfaat_pensiun){
+      if(masa_kerja < 10)
+        Note = "Masa Bekerja Nasabah Sampai Saat Ini Kurang Dari 10 Tahun. Nasabah Tidak Dapat Dibiayai"
+      else
+        Note = "Estimasi Manfaat Pensiun Nasabah a.n. "+nama_nasabah+" Sebesar "+toRp(manfaat_pensiun)
+    }
+
+    function hitung() {
+      JmlAnak = 0
+      Status = $('#status_nikah').val()
+      
+      pensiunPokok(Pokok, MasaKerja)
+      $("#str_pokok_pensiun").text(toRp(PokokPensiun));
+
+      manfaatPensiun(Status, JmlAnak, PokokPensiun)
+      $("#str_istri").text(toRp(TunjanganIstri));
+      $("#str_anak").text(toRp(TunjanganAnak));
+      $("#str_beras").text(toRp(TunjanganBeras));
+      $("#str_biaya_askes").text(toRp(Math.round(PotonganAskes)));
+      $("#str_manfaat_pensiun").text(toRp(ManfaatPensiun));
+
+      tmtPensiun(Tahun_BUP, TanggalLahir)
+      $("#str_tmt_pensiun").text(TMTPensiun);
+      $("#str_batas_usia").text(BatasUsiaPensiun+' Tahun');
+
+      note(MasaKerja, NamaNasabah, ManfaatPensiun)
+      $("#str_note").text(Note);
+
+      $("#str_tgl_pensiun").text(TanggalPensiun);
+      console.log(MasaKerja)      
+    }
+
+    function today(){
+      today = new Date()
+      var dd = today.getDate();
+      var mm = today.getMonth()+1; 
+      var yyyy = today.getFullYear();
+      if(dd<10) 
+      {
+          dd='0'+dd;
+      } 
+
+      if(mm<10) 
+      {
+          mm='0'+mm;
+      } 
+      today = dd+'/'+mm+'/'+yyyy;
+      return today
+    }
+
+    function checkDay(){
+      today = today()
+      $("#tgl_proyeksi_cair").val(today)
+      checkInputPrapen()
+    }
+
+
+    function hitungUsia(tanggal) {
+      let now = new Date();
+      let today = new Date(now.getYear(), now.getMonth(), now.getDate());
+      let yearNow = now.getYear();
+      let monthNow = now.getMonth();
+      let date_now = now.getDate();
+
+      let arr_tanggal = tanggal.split('/');
+      let dob = new Date(arr_tanggal[2], arr_tanggal[1] - 1, arr_tanggal[0]);
+      let yearDob = dob.getYear();
+      let monthDob = dob.getMonth();
+      let date_dob = dob.getDate();
+
+      nas_tahun = yearNow - yearDob;
+      if (monthNow >= monthDob)
+          nas_bulan = monthNow - monthDob;
+      else {
+          nas_tahun--;
+          nas_bulan = 12 + monthNow - monthDob;
+      }
+
+      if (date_now >= date_dob)
+          nas_hari = date_now - date_dob;
+      else {
+          nas_bulan--;
+          nas_hari = 31 + date_now - date_dob;
+          if (nas_bulan < 0) {
+              nas_bulan = 11;
+              nas_tahun--;
+          }
+      }
+      return nas_hari+"/"+nas_bulan+"/"+nas_tahun;
+    }
+
+    function toRp(angka) {
+        var rev = parseInt(angka, 10).toString().split('').reverse().join('');
+        var rev2 = '';
+        for (var i = 0; i < rev.length; i++) {
+            rev2 += rev[i];
+            if ((i + 1) % 3 === 0 && i !== (rev.length - 1)) {
+                rev2 += '.';
+            }
+        }
+        return 'Rp. ' + rev2.split('').reverse().join('') + ',00';
+    }
+
+    function formatRupiah(angka){
+      var number_string = angka.replace(/[^,\d]/g, '').toString(),
+      split       = number_string.split(','),
+      sisa        = split[0].length % 3,
+      rupiah        = split[0].substr(0, sisa),
+      ribuan        = split[0].substr(sisa).match(/\d{3}/gi);
+
+      // tambahkan titik jika yang di input sudah menjadi angka ribuan
+      if(ribuan){
+          separator = sisa ? '.' : '';
+          rupiah += separator + ribuan.join('.');
+      }
+
+      rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+      return rupiah;
+    }
+
+    function findAndReplace(string, target, replacement) {
+      for (i = 0; i < string.length; i++) {
+        string = string.replace(target, replacement);
+      }
+      return string;
+    }
+
+    let PlafondTO
+    let PlafondTU
+    let ModelAngsuran
+    let TglProyeksiCair
+    let SisaUsiaPensiun
+    let JangkaWaktu
+    let AngsuranBSI
+    let AngsuranNonBSI
+    let ProsenGaji
+    let ProsenPensiun
+    let PricePrapen
+    let PricePen
+    let PlafonPricePrapen
+    let PlafonPricePen
+    let PlafonAkhir
+    let InputBiayaFlagging
+
+    let TipeAtribusi
+    let RateAsuransi
+    let Fee
+    let StatusPayroll
+
+    let NilaiLimitAsuransi
+    let BiayaPinalti
+    let BiayaAsuransi
+    let BiayaFee
+    let BiayaFlagging
+    let BiayaTotal
+
+    let BiayaAtribusiNasabah
+    let BiayaAtribusiBank
+    let BiayaAtribusiTotal
+    let BiayaAwalNasabah
+
+    let MaxImplan
+    let MaxPensiunnan
+
+    let PriceAtribPraPensiun
+    let PriceAtribPraPensiunJK
+    let PriceAtribPensiun
+    let JasaKelola
+
+    let PlafonTanpaBSI
+    let AngsuranTanpaBSI
+
+    let CekTU
+
+    $('#btn_hitung_prapen').prop('disabled', true);
+    $('#str_jml_blokir_angs_label').prop('hidden', true);
+    $('#str_jml_blokir_angs').prop('hidden', true);
+
+    function checkInputPrapen(){
+      // cek rupiah
+      AngsuranBSI = $('#ang_bsm').val()
+      $('#ang_bsm').val(formatRupiah(AngsuranBSI))
+      AngsuranNonBSI = $('#ang_no_bsm').val()
+      $('#ang_no_bsm').val(formatRupiah(AngsuranNonBSI))
+      BiayaPinalti = $('#biaya_pinalti').val()
+      $('#biaya_pinalti').val(formatRupiah(BiayaPinalti))
+      BiayaFlagging = $('#biaya_flagging').val()
+      $('#biaya_flagging').val(formatRupiah(BiayaFlagging))
+      PlafondTU = $('#plafond_TU').val()
+      $('#plafond_TU').val(formatRupiah(PlafondTU))
+      PlafondTO = $('#plafond_TO').val()
+      $('#plafond_TO').val(formatRupiah(PlafondTO))
+
+
+      ModelAngsuran = $('#model_angsuran').val()
+      if (ModelAngsuran == "") return false;
+      StatusPayroll = $('#status_payroll').val()
+      if (StatusPayroll == "") return false;
+      TipeAtribusi = $('#tipe_atribusi').val()
+      if (TipeAtribusi == "") return false;
+
+      // cek prosen gaji
+      ProsenGaji = $('#prosen_gaji').val()
+      if (ProsenGaji == "") return false;
+      ProsenGaji = parseFloat(ProsenGaji)
+
+      // cek prosen pensiun
+      ProsenPensiun = $('#prosen_pensiun').val()
+      if (ProsenPensiun < 1) {
+          $('#less_persentase_manfaat_pensiun').show();
+          $('#more_persentase_manfaat_pensiun').hide();
+          $('#btn_hitung_prapen').prop('disabled', true);
+          return false;
+      }else if (ProsenPensiun > 90) {
+          $('#less_persentase_manfaat_pensiun').hide();
+          $('#more_persentase_manfaat_pensiun').show();
+          $('#btn_hitung_prapen').prop('disabled', true);
+          return false;
+      }else if(ProsenPensiun == "") {
+        return false;
+      }else{
+        $('#less_persentase_manfaat_pensiun').hide();
+        $('#more_persentase_manfaat_pensiun').hide();
+      }
+      ProsenPensiun = parseFloat(ProsenPensiun)
+
+      // cek tanggal cair
+      TglProyeksiCair = $('#tgl_proyeksi_cair').val();
+      if (TglProyeksiCair == "") return false;
+      JangkaWaktu = $('#tenor').val();
+      sisaPensiun(TanggalPensiun, TglProyeksiCair)
+
+      // cek tenor
+      cekTenor(TanggalLahir, TglProyeksiCair)
+      $('.str_max_tenor').text(' : '+JmlTenor+ ' Bulan')
+      if (JangkaWaktu < 1) {
+          $('#less_tenor').show();
+          $('#more_tenor').hide();
+          $('#btn_hitung_prapen').prop('disabled', true);
+          return false;
+      } else if (JangkaWaktu > JmlTenor) {
+          $('#less_tenor').hide();
+          $('#more_tenor').show();
+          $('#btn_hitung_prapen').prop('disabled', true);
+          return false;
+      }
+      else{
+        $('#less_tenor').hide();
+        $('#more_tenor').hide();
+      }
+      
+      // cek angsuran lain
+      AngsuranBSI = $('#ang_bsm').val()
+      AngsuranBSI = parseInt(findAndReplace(AngsuranBSI, ".", ""))      
+      AngsuranNonBSI = $('#ang_no_bsm').val()
+      AngsuranNonBSI = parseInt(findAndReplace(AngsuranNonBSI, ".", ""))
+
+      // cek price
+      PricePrapen = $('#price_sebelum').val()
+      if (PricePrapen == "") return false;
+      PricePrapen = parseFloat(PricePrapen)
+      PricePen = $('#price_setelah').val()
+      if (PricePen == "") return false;
+      PricePen = parseFloat(PricePen)
+      JasaKelola = parseFloat($('#price_jk').val())
+      JangkaWaktu = parseInt(JangkaWaktu);
+      SisaUsiaPensiun = parseInt(SisaUsiaPensiun)
+
+      // cek rate asuransi
+      RateAsuransi = $('#rate_asuransi').val()
+      if (RateAsuransi == "") return false;
+      RateAsuransi = parseFloat(RateAsuransi)
+      FEE = $('#fee').val()
+      if (FEE == "") return false;
+      FEE = parseFloat(FEE)
+
+      // cek pinalti
+      BiayaPinalti = $('#biaya_pinalti').val()
+      BiayaPinalti = findAndReplace(BiayaPinalti, ".", "")
+      BiayaPinalti = parseInt(BiayaPinalti)
+      if(TipeAtribusi == 7){
+        if(BiayaPinalti < 1){
+          $('#less_pinalti').show();
+          $('#btn_hitung_prapen').prop('disabled', true);
+          return false;
+        }
+        else{
+          $('#less_pinalti').hide();
+        }
+      }else
+        $('#less_pinalti').hide();
+
+      // cek flagging
+      if(BiayaFlagging < 0){
+        $('#less_flagging').show();
+        $('#btn_hitung_prapen').prop('disabled', true);
+        return false;
+      }else if(BiayaFlagging > 0){
+        $('#less_flagging').hide();
+      }else{
+        $('#less_flagging').show();
+        $('#btn_hitung_prapen').prop('disabled', true);
+        return false;
+      }
+
+      maxImplan(ModelAngsuran, StatusPayroll, Pokok, ProsenGaji, ManfaatPensiun, ProsenPensiun, AngsuranBSI, AngsuranNonBSI) 
+
+
+
+      DataDuber = dataDuber(MaxImplan, MaxPensiunnan, SisaUsiaPensiun, JangkaWaktu, PricePrapen, PricePen, JasaKelola, TipeAtribusi, BiayaPinalti, RateAsuransi)
+      console.log("data Duber")
+      console.log(DataDuber)
+      biaya_blokir = []
+      biaya_blokir = DataDuber['biaya_blokir']
+
+      DataReguler = dataReguler(MaxImplan, MaxPensiunnan, SisaUsiaPensiun, JangkaWaktu, PricePrapen, PricePen, JasaKelola, biaya_blokir)
+      console.log("data Reguler")
+      console.log(DataReguler)
+      PlafonAkhirReguler = DataReguler['plafond_akhir']
+      
+      plafonMax()
+      plafonAkhirMax(ModelAngsuran)
+
+      // console.log("Plafon Max")
+      // console.log(PlafonMaxStepdownPrapen_max)
+      // console.log(PlafonMaxStepdownPen_max)
+      // console.log(PlafonMaxBlokirPrapen_max)
+      // console.log(PlafonMaxBlokirPen_max)
+      // console.log("PlafonAkhir max")
+      // console.log(PlafonAkhirStepdown_max)
+      // console.log(PlafonAkhirBlokir_max)
+      // console.log("PlafonAkhir")
+      // console.log(PlafonAkhir_max)
+
+      // cek plafond pembiayaan
+      $('.str_max_plafon').text(': '+toRp(PlafonAkhir_max))
+      PlafondTU = $('#plafond_TU').val()
+      PlafondTU = parseInt(findAndReplace(PlafondTU, ".", ""))
+      if (PlafondTU < 1000000) {
+          $('#less_plafon').show();
+          $('#more_plafon').hide();
+          $('#btn_hitung_prapen').prop('disabled', true);
+          return false;
+      } else if (PlafondTU > PlafonAkhir_max) {
+          $('#less_plafon').hide();
+          $('#more_plafon').show();
+          $('#btn_hitung_prapen').prop('disabled', true);
+          return false;
+      } else if (PlafondTU == 0) {
+          $('#btn_hitung_prapen').prop('disabled', true);
+          return false;
+      } else if (PlafondTU != 0 && PlafondTU > 1000000) {
+          $('#less_plafon').hide();
+          $('#more_plafon').hide();
+      }else{
+          $('#btn_hitung_prapen').prop('disabled', true);
+          return false;
+      }
+
+      // cek plafond top up
+      maxTakeOver = PlafonAkhir_max-PlafondTU
+      $('.str_max_plafon_take_over').text(': '+toRp(maxTakeOver))
+      PlafondTO = $('#plafond_TO').val()
+      PlafondTO = parseInt(findAndReplace(PlafondTO, ".", ""))
+      if (PlafondTO > maxTakeOver) {
+        $('#more_plafon_take_over').show();
+        $('#btn_hitung_prapen').prop('disabled', true);
+          return false;
+      }else{
+        $('#more_plafon_take_over').hide();
+      }
+      $('#btn_hitung_prapen').prop('disabled', false);
+    }
+
+    function keyUpAtribusi(){
+      model = $('#model_angsuran').val()
+      if(model == "D"){
+          $('#atribusi2').attr("disabled", true);
+          $('#atribusi3').attr("disabled", true);
+          $('#atribusi4').attr("disabled", true);
+          $('#atribusi5').attr("disabled", true);
+          $('#atribusi6').attr("disabled", true);
+          $('#atribusi7').attr("disabled", true);
+          $('#atribusi8').attr("disabled", true);
+      }
+      else{
+          $('#atribusi2').attr("disabled", false);
+          $('#atribusi3').attr("disabled", false);
+          $('#atribusi4').attr("disabled", true);
+          $('#atribusi5').attr("disabled", false);
+          $('#atribusi6').attr("disabled", true);
+          $('#atribusi7').attr("disabled", false);
+          $('#atribusi8').attr("disabled", false);
+      }
+      checkInputPrapen()
+    }
+    function keyUpStatus(){
+      model = $('#model_angsuran').val()
+      if(model == "D"){
+          $('#status1').attr("disabled", true);
+          $('#status2').attr("disabled", true);
+      }
+      else{
+          $('#status1').attr("disabled", false);
+          $('#status2').attr("disabled", false);
+      }
+      checkInputPrapen()
+    }
+
+    function sisaPensiun(tanggal_pensiun, tgl_proyeksi_cair){
+      arr_tanggalPensiun = tanggal_pensiun.split('/');
+      PensiunMonth = parseInt(arr_tanggalPensiun[1])
+      PensiunYear = parseInt(arr_tanggalPensiun[2])
+
+      arr_proyeksiCair = tgl_proyeksi_cair.split('/')
+      ProyeksiMonth = parseInt(arr_proyeksiCair[1])
+      ProyeksiYear = parseInt(arr_proyeksiCair[2])
+
+      sisaYear = (PensiunYear-ProyeksiYear)*12
+      SisaUsiaPensiun = sisaYear-ProyeksiMonth+PensiunMonth
+    }
+
+    function cekTenor(tgl_lahir, tgl_cair){
+
+      let arr_cair = tgl_cair.split('/');
+      let cair = new Date(arr_cair[2], arr_cair[1] - 1, arr_cair[0]);
+      let yearNow = cair.getYear();
+      let monthNow = cair.getMonth();
+      let date_now = cair.getDate();
+
+      let arr_lahir = tgl_lahir.split('/');
+      let dob = new Date(arr_lahir[2], arr_lahir[1] - 1, arr_lahir[0]);
+      let yearDob = dob.getYear();
+      let monthDob = dob.getMonth();
+      let date_dob = dob.getDate();
+
+      nas_tahun = yearNow - yearDob;
+      if (monthNow >= monthDob)
+          nas_bulan = monthNow - monthDob;
+      else {
+          nas_tahun--;
+          nas_bulan = 12 + monthNow - monthDob;
+      }
+
+      if (date_now >= date_dob)
+          nas_hari = date_now - date_dob;
+      else {
+          nas_bulan--;
+          nas_hari = 31 + date_now - date_dob;
+          if (nas_bulan < 0) {
+              nas_bulan = 11;
+              nas_tahun--;
+          }
+      }
+
+      // hitung jumlah bulan
+      if(nas_hari > 15 )
+        nas_bulan += 1
+      JmlBulan = (parseInt(nas_tahun)*12)+parseInt(nas_bulan)
+      JmlTenor = 894-JmlBulan
+      JmlTenor = Math.min(JmlTenor, 180)
+    }
+
+    function maxImplan(model, payroll, pokok, prosen_gaji, manfaat_pensiun, prosen_pensiun, angs_BSI, angs_non_BSI){
+      if(model == "R" && payroll == "P")
+        Implan = pokok*70/100-angs_BSI
+      else if(model == "R" && payroll == "C")
+        Implan = pokok*80/100-angs_BSI-angs_non_BSI
+      else
+        Implan = pokok*50/100-angs_BSI-angs_non_BSI
+
+      ImplanPokok = pokok*prosen_gaji/100
+      if(Implan>ImplanPokok)
+        MaxImplan = ImplanPokok
+      else
+        MaxImplan = Implan
+
+      MaxPensiunnan = manfaat_pensiun*prosen_pensiun/100
+    }
+
+    function biayaAsuransi(){
+      tipe = TipeAtribusi
+
+      ra = RateAsuransi/100
+      plafond = PlafonAkhir_per
+
+      if(tipe == 1){
+        BiayaAsuransi = (plafond)*ra
+        NilaiLimitAsuransi = plafond
+      }
+      else if(tipe ==2){
+        BiayaAsuransi = ra*(plafond)
+        NilaiLimitAsuransi = plafond
+      }
+      else if(tipe ==3){
+        BiayaAsuransi = ra*((plafond)+((plafond)*(ra/(1-ra))))
+        NilaiLimitAsuransi = plafond+BiayaAsuransi
+      }
+      else if(tipe ==4){
+        BiayaAsuransi = ra*(plafond+BiayaPinalti)
+        NilaiLimitAsuransi = plafond+BiayaPinalti
+      }
+      else if(tipe ==5){
+        BiayaAsuransi = ra*((plafond)+((plafond)*ra/(1-ra)))
+        NilaiLimitAsuransi = plafond+BiayaAsuransi
+      }
+      else if(tipe ==6){
+        BiayaAsuransi = ra*(plafond+BiayaPinalti+(ra*(plafond+BiayaPinalti)/(1-ra)))
+        NilaiLimitAsuransi = plafond+BiayaAsuransi+BiayaPinalti
+      }
+      else if(tipe ==7){
+        BiayaAsuransi = ra*(plafond+BiayaPinalti)
+        NilaiLimitAsuransi = plafond+BiayaPinalti
+      }
+      else{
+        BiayaAsuransi = ra*(plafond+BiayaPinalti+(ra*(plafond+BiayaPinalti)/(1-ra)))
+        NilaiLimitAsuransi = plafond+BiayaAsuransi+BiayaPinalti
+      }
+    }
+
+    function checkBiayaFlagging(){
+      JangkaWaktu = $('#tenor').val();
+      InputBiayaFlagging = (38000*Math.floor(JangkaWaktu/12))+30000
+      $('#biaya_flagging').val(InputBiayaFlagging)
+      BiayaFlagging = $('#biaya_flagging').val()
+      $('#biaya_flagging').val(formatRupiah(BiayaFlagging))
+      BiayaFlagging = $('#biaya_flagging').val()
+      BiayaFlagging = findAndReplace(BiayaFlagging, ".", "")
+      BiayaFlagging = parseInt(BiayaFlagging)
+      checkInputPrapen();
+    }
+
+    function biayaFee(){
+      model = ModelAngsuran
+      tipe = TipeAtribusi
+      plafond = PlafonAkhir_per
+      Fee = FEE/100
+
+      if(model == "D" || tipe == 2 || tipe == 5 || tipe == 7 || tipe == 8){
+        BiayaFee = Fee*plafond
+      }
+      else{
+        BiayaFee = 0;
+      }
+    }
+
+    function biayaNasabah(){
+      model = ModelAngsuran
+      tipe = TipeAtribusi
+      if(tipe == 1 || tipe == 2)
+        BiayaAtribusiNasabah = 0
+      else if(tipe == 3 || tipe == 5)
+        BiayaAtribusiNasabah = BiayaAsuransi
+      else if(tipe == 4 || tipe == 7)
+        BiayaAtribusiNasabah = BiayaPinalti     
+      else
+        BiayaAtribusiNasabah = BiayaAsuransi+BiayaPinalti
+      
+      BiayaAtribusiBank = BiayaFlagging+BiayaFee
+      BiayaAtribusiTotal = BiayaAtribusiNasabah+BiayaAtribusiBank
+      BiayaAwalNasabah = BiayaAsuransi+BiayaPinalti-BiayaAtribusiNasabah
+    }
+
+    
+    let DataDuber
+    let DataReguler
+    let DataMurabahah
+
+    function dataReguler(max_implan, max_pensiun, sisa_pensiun, tenor, price_sebelum, price_setelah, jasa_kelola, biaya_blokir){
+      nperiod = tenor - sisa_pensiun
+      j = price_sebelum + jasa_kelola
+      max_angs_prapen = max_implan
+
+      data_max_angs_prapen = []
+      data_margin_awal = []
+      data_persen_margin_awal = []
+      data_margin_awal_pensiun = []
+      data_persen_margin_awal_pensiun = []
+      data_plafon = []
+      data_biaya_blokir = []
+      data_max_angs_prapen[0] = 0
+      data_plafon[0] = 0
+
+      data_biaya_blokir = biaya_blokir
+
+      i=0
+      while(data_max_angs_prapen[i] <= max_angs_prapen && data_plafon[i] <= 350000000){
+        i++
+        data_plafon[i] = (i+1)*1000000
+        data_margin_awal[i] = (data_plafon[i]*j/100/12)+data_biaya_blokir[i]
+        data_persen_margin_awal[i] = Math.ceil((12*data_margin_awal[i]/data_plafon[i])*10000)/10000
+        data_margin_awal_pensiun[i] = (data_plafon[i]*price_setelah/100/12)+data_biaya_blokir[i]
+        data_persen_margin_awal_pensiun[i] =  Math.ceil((12*data_margin_awal_pensiun[i]/data_plafon[i])*10000)/10000
+        data_max_angs_prapen[i] =  data_plafon[i]*data_persen_margin_awal[i]/12+10000
+      }
+
+      price_atrib_prapen = Math.round(vlookup_kebawah(max_implan, data_margin_awal, data_persen_margin_awal)*10000)/10000
+      price_atrib_pen = Math.round(vlookup_kebawah(max_pensiun, data_margin_awal_pensiun, data_persen_margin_awal_pensiun)*10000)/10000
+
+      plafon_max_pen = Math.floor(PV(price_atrib_pen/12,nperiod,-max_pensiun)/1000000)*1000000
+      plafon_max_prapen = Math.floor(PV(price_atrib_prapen/12,sisa_pensiun, -max_implan, -plafon_max_pen)/1000000)*1000000
+
+      plafond_akhir = Math.min(data_plafon[data_plafon.length-2], plafon_max_prapen);
+
+
+      // return data_plafon[data_plafon.length-2]
+      data = []
+      data['data_plafon'] = data_plafon
+      data['data_margin_awal'] = data_margin_awal
+      data['data_persen_margin_awal'] = data_persen_margin_awal
+      data['data_margin_awal_pensiun'] = data_margin_awal_pensiun
+      data['data_persen_margin_awal_pensiun'] = data_persen_margin_awal_pensiun
+      data['data_max_angs_prapen'] = data_max_angs_prapen
+      data['data_biaya_blokir'] = data_biaya_blokir
+      console.log("Reguler")
+      console.log(data)
+
+      data_reguler = []
+      data_reguler['plafond_akhir'] = plafond_akhir
+      data_reguler['price_atrib_prapen'] = price_atrib_prapen
+      data_reguler['price_atrib_pen'] = price_atrib_pen
+
+      return data_reguler
+      // console.log(data)
+    }
+
+    function dataDuber(max_implan, max_pensiun, sisa_pensiun, tenor, price_sebelum, price_setelah, jasa_kelola, tipe, pinalti, rate_asuransi){
+      nperiod = tenor - sisa_pensiun
+      j = price_sebelum + jasa_kelola
+      angs_awal_stepdown = max_implan
+      angs_pokok_awal = Math.min((max_implan-10000)*sisa_pensiun, 10000*sisa_pensiun);
+      penalti = pinalti
+
+      data_plafon = []
+      data_os_prapen = []
+      data_pinalti = []
+      data_asuransi = []
+      data_biaya_atribut = []
+      data_biaya_blokir = []
+      data_angs_pasca = []
+      data_total_blokir = []
+      data_cek_margin_awal = []
+      data_rate_sebelum = []
+      data_rate_sesudah = []
+      data_angs_awal = []
+      data_cek_plafon_max = []
+      data_plafon_pensiun = []
+      data_angs_prapen = []
+      data_os_prapen_stepdown = []
+      data_cek_plafon_max_stepdown = []
+
+      data_cek_plafon_max_stepdown[0] = 1000000
+      data_plafon[0] = 1000000
+
+
+      i=0
+      while(data_cek_plafon_max_stepdown[i] == data_plafon[i] && data_plafon[i] < 350000000){
+        i++
+        data_plafon[i] = (i+1)*1000000
+        data_os_prapen[i] = Math.round((data_plafon[i]-angs_pokok_awal)*100)/100
+
+        if(tipe == 6 || tipe == 4 || tipe == 7 || tipe == 8)
+          data_pinalti[i] = penalti
+        else
+          data_pinalti[i] = 0
+
+        if(tipe == 1 || tipe == 2 || tipe == 4 || tipe == 7)
+          data_asuransi[i] = 0
+        else if(tipe == 3 || tipe == 5)
+          data_asuransi[i] = rate_asuransi/100*(data_plafon[i]+(data_plafon[i]*rate_asuransi/100/(1-rate_asuransi/100)))
+        else
+          data_asuransi[i] = rate_asuransi/100*(data_plafon[i]+data_pinalti[i]+((data_plafon[i]+data_pinalti[i])*rate_asuransi/100/(1-rate_asuransi/100)))
+
+        if(tipe == 1 || tipe == 2)
+          biaya_atribut = 0
+        else
+          biaya_atribut = 1
+
+        data_biaya_atribut[i] = biaya_atribut*(data_asuransi[i]+data_pinalti[i])
+        data_biaya_blokir[i] = data_biaya_atribut[i]/tenor
+        data_angs_pasca[i] = Math.min(-PMT(price_setelah/100/12,nperiod,data_os_prapen[i],0,0)+data_biaya_blokir[i], max_pensiun)
+        data_angs_awal[i] = Math.min(max_implan, (data_plafon[i]*j/100/12)+data_biaya_blokir[i]+10000)
+        data_total_blokir[i] = Math.ceil((data_angs_awal[i]*sisa_pensiun)+(data_angs_pasca[i]*3))
+        data_cek_margin_awal[i] = data_total_blokir[i]-angs_pokok_awal-(data_angs_pasca[i]*3)
+        data_rate_sebelum[i] = Math.ceil(12*(data_cek_margin_awal[i]/sisa_pensiun)/data_plafon[i]*10000)/10000
+        if(data_rate_sebelum[i]>=j/100)
+          data_cek_plafon_max_stepdown[i] = data_plafon[i]
+        else
+          data_cek_plafon_max_stepdown[i-1]
+        if(data_rate_sebelum[i]>j/100 && data_angs_pasca[i] < max_pensiun)
+          data_cek_plafon_max[i] = data_plafon[i]
+        else
+          data_cek_plafon_max[i-1]
+        data_plafon_pensiun[i] = Math.round(PV(price_setelah/100/12,nperiod,-(data_angs_pasca[i]-data_biaya_blokir[i]),0,0)/10000)*10000
+        data_angs_prapen[i] = (data_cek_margin_awal[i]+angs_pokok_awal)/sisa_pensiun
+        data_rate_sesudah[i] = Math.ceil(RATE(nperiod,-data_angs_pasca[i],data_plafon_pensiun[i],0,0,1/100)*12*10000)/10000
+
+        data_os_prapen_stepdown[i] = data_plafon[i]-((max_implan*sisa_pensiun)+CUMIPMT(j/100/12, tenor, data_plafon[i], 1, sisa_pensiun, 0)-(data_biaya_blokir[i]*sisa_pensiun)) 
+      }
+  
+      // cek_plafond_maks_pasca_pen = data_plafon[data_plafon.length-1]
+
+      data_duber = []
+      data_duber['os_prapen_stepdown'] = data_os_prapen_stepdown
+      data_duber['cek_plafon_max'] = data_cek_plafon_max
+      data_duber['cek_plafon_max_stepdown'] = data_cek_plafon_max_stepdown
+      data_duber['plafon_pensiun'] = data_plafon_pensiun
+      data_duber['angs_prapen'] = data_angs_prapen
+      data_duber['angs_pasca'] = data_angs_pasca
+      data_duber['plafon'] = data_plafon
+      data_duber['biaya_blokir'] = data_biaya_blokir
+      data_duber['rate_sebelum'] = data_rate_sebelum
+      data_duber['rate_sesudah'] = data_rate_sesudah
+
+
+      // PlafonMaxStepdownPen_max = vlookup_keatas(cek_plafond_maks_pasca_pen,data_plafon,data_os_prapen_stepdown)
+
+      // console.log(data_plafon[111])
+      // console.log(data_angs_pasca[111])
+      // console.log(max_pensiun)
+      return data_duber
+
+    }
+
+    function dataMurabahah(permohonan, angs_prapen, sisa_pensiun, price_sebelum, price_setelah, jasa_kelola)
+    {
+      total_angs = angs_prapen
+      data_angs_margin = []
+      data_pokok_angs = []
+      data_sisa_OS_pokok = []
+
+      data_sisa_OS_pokok[0] = permohonan
+
+      for (var i = 1; i < sisa_pensiun+1; i++) {
+        data_angs_margin[i] = data_sisa_OS_pokok[i-1]*(((price_sebelum+jasa_kelola)/100)/12)
+        data_pokok_angs[i] = angs_prapen-data_angs_margin[i]
+        data_sisa_OS_pokok[i] = data_sisa_OS_pokok[i-1]-data_pokok_angs[i]
+      }
+      
+      data = []
+      data['data_angs_margin'] = data_angs_margin
+      data['data_pokok_angs'] = data_pokok_angs
+      data['data_sisa_OS_pokok'] = data_sisa_OS_pokok
+      console.log("data Murabahah")
+      console.log(data)
+
+      return data_sisa_OS_pokok[data_sisa_OS_pokok.length-1]
+      // console.log(data_sisa_OS_pokok[data_sisa_OS_pokok.length-1])
+    }
+
+     
+
+
+    let PlafonAkhir_max
+    let PlafonAkhir_per
+
+    let AngsuranAkhirPrepen_max
+    let AngsuranAkhirPen_max
+    let AngsuranAkhirPrepen_per
+    let AngsuranAkhirPen_per
+
+    let MaxAngsuranAkhirPrepen_max
+    let MaxAngsuranAkhirPen_max
+    let MaxAngsuranAkhirPrepenBlokir_max
+    let MaxAngsuranAkhirPenBlokir_max
+    let MaxAngsuranAkhirPrepen_per
+    let MaxAngsuranAkhirPen_per
+    let MaxAngsuranAkhirPrepenBlokir_per
+    let MaxAngsuranAkhirPenBlokir_per
+
+    let PlafonMaxStepdownPrapen_max
+    let PlafonMaxStepdownPen_max
+    let PlafonMaxBlokirPrapen_max
+    let PlafonMaxBlokirPen_max
+    let PlafonMaxStepdownPrapen_per
+    let PlafonMaxStepdownPen_per
+    let PlafonMaxBlokirPrapen_per
+    let PlafonMaxBlokirPen_per
+
+    let PlafonAkhirStepdown_max
+    let PlafonAkhirBlokir_max
+    let PlafonAkhirStepdown_per
+    let PlafonAkhirBlokir_per
+
+    let TakeOver
+    let TakeUp
+    let MinBlokir
+    let TakeOverMax
+    let CashOnHeads
+    let THP
+    let SisaGajiPrepen
+    let SisaGajiPen
+
+    let PriceAtribPraPensiunBlokir
+    let PriceAtribPraPensiunBlokir_JasaKelola
+    let PriceAtribPraPensiunStepdown
+    let PriceAtribPraPensiunStepdown_JasaKelola
+
+    // plafond akhir
+    function plafonAkhirMax(model){
+      if(model == "D"){
+          PlafonAkhir_max = PlafonAkhirBlokir_max
+      }
+      else{
+          PlafonAkhir_max = PlafonAkhirStepdown_max
+      }
+    }
+    function plafonAkhirPer(plafond_TU, plafond_TO, plafond_akhir_Max){
+        plafond_akhir_per = plafond_TO+plafond_TU
+        PlafonAkhir_per = Math.min(plafond_akhir_per, plafond_akhir_Max)
+    }
+
+
+    function plafonMax(){
+      cek_plafond_maks_pasca_pen = DataDuber['cek_plafon_max_stepdown'][DataDuber['cek_plafon_max_stepdown'].length-1]
+      cek_plafond_maks = DataDuber['cek_plafon_max'][DataDuber['cek_plafon_max'].length-1]      
+
+      PlafonMaxStepdownPrapen_max = PlafonAkhirReguler
+      PlafonMaxStepdownPen_max = vlookup_keatas(cek_plafond_maks_pasca_pen,DataDuber['plafon'],DataDuber['os_prapen_stepdown'])
+      PlafonMaxBlokirPrapen_max = cek_plafond_maks
+      PlafonMaxBlokirPen_max = vlookup_keatas(cek_plafond_maks,DataDuber['plafon'],DataDuber['plafon_pensiun'])
+      PlafonAkhirStepdown_max = PlafonMaxStepdownPrapen_max
+      PlafonAkhirBlokir_max = PlafonMaxBlokirPrapen_max
+    }
+    function plafonPer(){
+
+        sisaBulan = SisaUsiaPensiun
+        nperiodPen = JangkaWaktu - SisaUsiaPensiun
+        rate = PriceAtribPraPensiunJK/100
+        cumprinc = CUMPRINC(rate/12,nperiodPen,PlafonMaxStepdownPrapen_max,1,sisaBulan,0)
+
+        PlafonMaxStepdownPrapen_per = PlafonAkhir_per
+        maxAngsuranPrapenPer()
+        if(model == "D"){
+            AngsuranAkhirPrepen_per = MaxAngsuranAkhirPrepenBlokir_per
+        }
+        else{
+            AngsuranAkhirPrepen_per = MaxAngsuranAkhirPrepen_per
+        }
+        PlafonMaxStepdownPen_per = dataMurabahah(PlafonAkhir_per, AngsuranAkhirPrepen_per, SisaUsiaPensiun, PriceAtribPraPensiun, PriceAtribPensiun, JasaKelola)
+        
+        PlafonMaxBlokirPrapen_per = PlafonAkhir_per
+        PlafonMaxBlokirPen_per = PlafonMaxStepdownPen_per
+        PlafonAkhirStepdown_per = PlafonMaxStepdownPrapen_max + cumprinc
+        PlafonAkhirBlokir_per = 182355477,19
+    }
+
+    function maxAngsuranPrapenPer(){
+      MaxAngsuranAkhirPrepen_per = MaxImplan
+      MaxAngsuranAkhirPrepenBlokir_per = vlookup_kebawah(PlafonMaxStepdownPrapen_per,DataDuber['plafon'],DataDuber['angs_prapen'])
+    }
+
+    function maxAngsuran(){
+        MaxAngsuranAkhirPrepenBlokir_max = vlookup_kebawah(PlafonMaxBlokirPrapen_max,DataDuber['plafon'],DataDuber['angs_prapen'])
+        MaxAngsuranAkhirPenBlokir_max = vlookup_keatas(PlafonAkhirBlokir_max,DataDuber['plafon'],DataDuber['angs_pasca'])
+        
+
+        MaxAngsuranAkhirPrepen_max = MaxImplan
+        MaxAngsuranAkhirPen_max = MaxAngsuranAkhirPenBlokir_max
+
+        rate1 = PriceAtribPraPensiunStepdown_JasaKelola/12
+        rate2 = PriceAtribPraPensiunBlokir_JasaKelola/12
+        nperiodPen = JangkaWaktu - SisaUsiaPensiun
+
+        MaxAngsuranAkhirPen_per = -PMT(rate1,nperiodPen,PlafonMaxStepdownPen_per,0,0)
+        MaxAngsuranAkhirPenBlokir_per = -PMT(rate2,nperiodPen,PlafonMaxBlokirPen_per,0,0)
+    }
+
+    function angsuranAkhir(){
+        model = ModelAngsuran
+        if(model == "D"){
+            AngsuranAkhirPrepen_max = MaxAngsuranAkhirPrepenBlokir_max
+            AngsuranAkhirPen_max = MaxAngsuranAkhirPenBlokir_max
+            AngsuranAkhirPrepen_per = MaxAngsuranAkhirPrepenBlokir_per
+            AngsuranAkhirPen_per = MaxAngsuranAkhirPenBlokir_per
+            TakeOverMax = PlafonAkhirBlokir_max-TakeOver
+        }
+        else{
+            AngsuranAkhirPrepen_max = MaxAngsuranAkhirPrepen_max
+            AngsuranAkhirPen_max = MaxAngsuranAkhirPen_max
+            AngsuranAkhirPrepen_per = MaxAngsuranAkhirPrepen_per
+            AngsuranAkhirPen_per = MaxAngsuranAkhirPen_per
+            TakeOverMax = PlafonAkhirStepdown_max-TakeOver
+        }
+    }
+
+    function takeOver(){
+      TakeOver = Math.min(PlafondTO, PlafonAkhir_max)
+    }
+
+    function takeUp(){
+      TakeUp = Math.min(PlafondTU, TakeOverMax)
+    }
+
+    function sisaGaji(){
+      THP = TakeUp-BiayaAwalNasabah
+      SisaGajiPrepen = Pokok - AngsuranAkhirPrepen_per
+      SisaGajiPen = ManfaatPensiun - AngsuranAkhirPen_per
+    }
+
+    function price(){
+      tipe = TipeAtribusi
+      if(tipe == 1 || tipe == 2)
+        PriceAtribPraPensiunBlokir = PricePrapen/100
+      else
+        PriceAtribPraPensiunBlokir = vlookup_keatas(PlafonAkhir_per,DataDuber['plafon'],DataDuber['rate_sebelum'])
+
+      PriceAtribPraPensiunBlokir_JasaKelola = vlookup_keatas(PlafonAkhir_per,DataDuber['plafon'],DataDuber['rate_sesudah'])
+      PriceAtribPraPensiunStepdown = DataReguler['price_atrib_prapen']
+      PriceAtribPraPensiunStepdown_JasaKelola = DataReguler['price_atrib_pen']
+    }
+
+    function cashOnHands(){
+        MinBlokir = (AngsuranAkhirPrepen_per*SisaUsiaPensiun+AngsuranAkhirPen_per*3)
+        CashOnHeads = PlafonAkhir_per - MinBlokir - TakeOver
+    }
+
+    function hitungPrice(){
+      model = ModelAngsuran
+      if(model == "D"){
+          PriceAtribPraPensiun = Math.round(PriceAtribPraPensiunBlokir*10000)/100
+          PriceAtribPensiun = Math.round(PriceAtribPraPensiunBlokir_JasaKelola*10000)/100
+      }
+      else{
+          PriceAtribPraPensiun = Math.round(PriceAtribPraPensiunStepdown*10000)/100 - JasaKelola
+          PriceAtribPensiun = Math.round(PriceAtribPraPensiunStepdown_JasaKelola*10000)/100
+      }
+      PriceAtribPraPensiunJK = PriceAtribPraPensiun + JasaKelola
+
+    }
+
+    function tanpaBSI(){
+        rate = (PricePrapen+JasaKelola)/100
+        sisa = SisaUsiaPensiun
+        PlafonTanpaBSI = -PV(rate/12,sisa,MaxImplan,0,0)
+        PlafonTanpaBSI = Math.floor(PlafonTanpaBSI/1000000)*1000000;
+        AngsuranTanpaBSI = Math.round(-PMT(rate/12,sisa,PlafonTanpaBSI,0,0))
+    }
+
+    function cekTU(){
+      if(TakeOver == 0)
+        CekTU = ""
+      else
+        CekTU = "Top Up"
+    }
+
+    
+
+    function hitungPrapen() {
+      sisaPensiun(TanggalPensiun, TglProyeksiCair) 
+      $("#str_sisa_usia_pensiun").text(SisaUsiaPensiun+' Bulan');
+      $("#str_jangka_waktu").text(JangkaWaktu+' Bulan');
+
+
+      plafonAkhirPer(PlafondTU, PlafondTO, PlafonAkhir_max)
+      price()
+      hitungPrice()
+      plafonPer()
+      takeOver()
+      maxAngsuran()
+      angsuranAkhir()
+      takeUp()
+      cashOnHands()
+      if(ModelAngsuran == "D"){
+        $("#str_jml_blokir_angs").text(toRp(Math.round(MinBlokir)));
+        $('#str_jml_blokir_angs_label').prop('hidden', false);
+        $('#str_jml_blokir_angs').prop('hidden', false);
+      }
+      else{
+        $('#str_jml_blokir_angs_label').prop('hidden', true);
+        $('#str_jml_blokir_angs').prop('hidden', true);
+      }
+      
+      $("#str_angs_pra").text(toRp(Math.round(AngsuranAkhirPrepen_per)));
+      $("#str_angs_pasca").text(toRp(Math.round(AngsuranAkhirPen_per)));
+
+      biayaAsuransi()
+      $("#str_biaya_asuransi").text(toRp(Math.round(BiayaAsuransi)));
+
+      biayaFee()
+      $("#str_biaya_fee").text(toRp(Math.round(BiayaFee)));
+
+      BiayaFlagging = $('#biaya_flagging').val()
+      BiayaFlagging = findAndReplace(BiayaFlagging, ".", "")
+      BiayaFlagging = parseInt(BiayaFlagging)
+      $("#str_biaya_flagging").text(toRp(Math.round(BiayaFlagging)));
+      $("#str_biaya_pinalti").text(toRp(Math.round(BiayaPinalti)));
+
+      BiayaTotal = BiayaAsuransi+BiayaFee+BiayaFlagging+BiayaPinalti
+      $("#str_biaya_total").text(toRp(Math.round(BiayaTotal)));
+
+      biayaNasabah()
+      $("#str_nilai_limit").text(toRp(Math.round(NilaiLimitAsuransi)));
+      $("#str_biaya_atribusi_bank").text(toRp(Math.round(BiayaAtribusiBank)));
+      $("#str_biaya_atribusi_nasabah").text(toRp(Math.round(BiayaAtribusiNasabah)));
+      $("#str_biaya_atribusi_total").text(toRp(Math.round(BiayaAtribusiTotal)));
+      $("#str_biaya_awal_nasabah").text(toRp(Math.round(BiayaAwalNasabah)));
+
+      hitungPrice()
+      $("#str_price_pra").text(PriceAtribPraPensiun+'%');
+      $("#str_price_pra_jk").text(PriceAtribPraPensiunJK+'%');
+      $("#str_price_pasca").text(PriceAtribPensiun+'%');
+      
+      tanpaBSI()
+      $("#str_total_max_pembiayaan_tanpa").text(toRp(Math.round(PlafonTanpaBSI)));
+      $("#str_angs_tanpa").text(toRp(Math.round(AngsuranTanpaBSI)));
+      $("#str_jangka_waktu_tanpa").text(SisaUsiaPensiun+' Bulan');
+
+      sisaGaji()
+
+      // note
+      $("#note_TO").text(toRp(Math.round(TakeOver)));
+      $("#note_ifTU").text(CekTU);
+      $("#note_TU").text(toRp(Math.round(TakeUp)));
+      $("#note_THP").text(toRp(Math.round(THP)));
+      $("#note_converage_asuransi").text(toRp(Math.round(NilaiLimitAsuransi)));
+      $("#note_biaya_atribusi_nasabah").text(toRp(Math.round(BiayaAtribusiNasabah)));
+      $("#note_biaya_awal_nasabah").text(toRp(Math.round(BiayaAwalNasabah)));
+      $("#note_angs_prapen").text(toRp(Math.round(AngsuranAkhirPrepen_per)));
+      $("#note_sisa_gaji_prapen").text(toRp(Math.round(SisaGajiPrepen)));
+      $("#note_angs_pen").text(toRp(Math.round(AngsuranAkhirPen_per)));
+      $("#note_sisa_gaji_pen").text(toRp(Math.round(SisaGajiPen)));
+      if(ModelAngsuran == "D")
+        $("#note_cash_on_hand").text(toRp(Math.round(CashOnHeads)));
+      else
+        $("#note_cash_on_hand").text(toRp(Math.round(PlafonAkhir_per)));
+
+      // console.log(MaxImplan)
+      // console.log(MaxPensiunnan)
+      // console.log(SisaUsiaPensiun)
+      // console.log(JangkaWaktu)
+      // console.log(TipeAtribusi)
+      // console.log(RateAsuransi)
+      // console.log(BiayaPinalti)
+      // console.log(PricePrapen)
+      // console.log(PricePen)
+      // console.log(JasaKelola)
+
+
+      console.log("PlafonAkhir")
+      console.log(PlafonAkhir_max)
+      console.log(PlafonAkhir_per)
+      console.log("AngsuranAkhir")
+      console.log(AngsuranAkhirPrepen_max)
+      console.log(AngsuranAkhirPen_max)
+      console.log(AngsuranAkhirPrepen_per)
+      console.log(AngsuranAkhirPen_per)
+
+      console.log("MaxAngsuran Max")
+      console.log(MaxAngsuranAkhirPrepen_max)
+      console.log(MaxAngsuranAkhirPen_max)
+      console.log(MaxAngsuranAkhirPrepenBlokir_max)
+      console.log(MaxAngsuranAkhirPenBlokir_max)
+      console.log("MaxAngsuran pemohon")
+      console.log(MaxAngsuranAkhirPrepen_per)
+      console.log(MaxAngsuranAkhirPen_per)
+      console.log(MaxAngsuranAkhirPrepenBlokir_per)
+      console.log(MaxAngsuranAkhirPenBlokir_per)
+
+      console.log("Plafon Max")
+      console.log(PlafonMaxStepdownPrapen_max)
+      console.log(PlafonMaxStepdownPen_max)
+      console.log(PlafonMaxBlokirPrapen_max)
+      console.log(PlafonMaxBlokirPen_max)
+      console.log("Plafon pemohon")
+      console.log(PlafonMaxStepdownPrapen_per)
+      console.log(PlafonMaxStepdownPen_per)
+      console.log(PlafonMaxBlokirPrapen_per)
+      console.log(PlafonMaxBlokirPen_per)
+
+      console.log("PlafonAkhir max")
+      console.log(PlafonAkhirStepdown_max)
+      console.log(PlafonAkhirBlokir_max)
+      console.log("PlafonAkhir pemohon")
+      console.log(PlafonAkhirStepdown_per)
+      console.log(PlafonAkhirBlokir_per)
+
+      console.log("Take")
+      console.log(TakeOver)
+      console.log(TakeUp)
+      console.log(MinBlokir)
+      console.log(TakeOverMax)
+      console.log(CashOnHeads)
+
+      console.log("Price")
+      console.log(PriceAtribPraPensiunBlokir)
+      console.log(PriceAtribPraPensiunBlokir_JasaKelola)
+      console.log(PriceAtribPraPensiunStepdown)
+      console.log(PriceAtribPraPensiunStepdown_JasaKelola)
+
+    }
+
+    function PV(rate, nperiod, ptm, fv, type) {
+        if (!fv) fv = 0;
+        if (!type) type = 0;
+        rate = eval(rate);
+        nperiod = eval(nperiod);
+
+        // Return present value
+        if (rate === 0) {
+          return - ptm * nperiod - fv;
+        } else {
+          return (((1 - Math.pow(1 + rate, nperiod)) / rate) * ptm * (1 +rate * type) - fv) / Math.pow(1 + rate, nperiod);
+        }
+    }
+
+    function PMT(rate, nperiod, pv, fv, type) {
+      if (!fv) fv = 0;
+      if (!type) type = 0;
+      if (rate == 0) return -(pv + fv) / nperiod;
+      var pvif = Math.pow(1 + rate, nperiod);
+      var pmt = rate / (pvif - 1) * -(pv * pvif + fv);
+      if (type == 1) {
+        pmt /= (1 + rate);
+      };
+      return pmt;
+    }
+    function FV(rate, nper, pmt, pv, type) {
+      var pow = Math.pow(1 + rate, nper),
+        fv;
+
+      pv = pv || 0;
+      type = type || 0;
+
+      if (rate) {
+        fv = (pmt*(1+rate*type)*(1-pow)/rate)-pv*pow;
+      } else {
+        fv = -1 * (pv + pmt * nper);
+      }
+      return fv;
+    }
+
+    function CUMPRINC(rate, periods, value, start, end, type) {
+      // Credits: algorithm inspired by Apache OpenOffice
+      // Credits: Hannes Stiebitzhofer for the translations of function and variable names
+
+      rate = parseFloat(rate);
+      periods = parseFloat(periods);
+      value = parseFloat(value);
+      // if (anyIsError(rate, periods, value)) {
+      //   return error.value;
+      // }
+
+      // // Return error if either rate, periods, or value are lower than or equal to zero
+      // if (rate <= 0 || periods <= 0 || value <= 0) {
+      //   return error.num;
+      // }
+
+      // // Return error if start < 1, end < 1, or start > end
+      // if (start < 1 || end < 1 || start > end) {
+      //   return error.num;
+      // }
+
+      // // Return error if type is neither 0 nor 1
+      // if (type !== 0 && type !== 1) {
+      //   return error.num;
+      // }
+
+      // Compute cumulative principal
+      var payment = PMT(rate, periods, value, 0, type);
+      var principal = 0;
+      if (start === 1) {
+        if (type === 0) {
+          principal = payment + value * rate;
+        } else {
+          principal = payment;
+        }
+        start++;
+      }
+      for (var i = start; i <= end; i++) {
+        if (type > 0) {
+          principal += payment - (FV(rate, i - 2, payment, value, 1) - payment) * rate;
+        } else {
+          principal += payment - FV(rate, i - 1, payment, value, 0) * rate;
+        }
+      }
+
+      // Return cumulative principal
+      return principal;
+    };
+    function CUMIPMT(rate, nper, pv, start_period, end_period, type)
+    {
+
+      value = 0;
+      for (per = start_period; per <= end_period; per++)
+      {
+        value += IPMT(rate, nper, per, pv, 0, type);
+      }
+
+      return value;
+    }
+
+    function IPMT(rate, nper, period, pv, fv, type)
+    {
+      if (rate == 0)
+      {
+        return 0;
+      }
+      if (type == 1 && period == 1)
+      {
+        return 0;
+      }
+      pmt = PMT(rate, nper, pv, fv, 0);
+      if (type == 0)
+      {
+        return (pv * Math.pow(1.0 + rate, period - 1) + pmt * ((Math.pow(1 + rate, period - 1) - 1) / rate)) * rate * (-1.0);
+      }
+      else
+      {
+        pmt2 = PMT(rate, nper, pv, fv, 1);
+        return pmt2 - pmt + (pv * Math.pow(1.0 + rate, period - 2) + pmt * ((Math.pow(1 + rate, period - 2) - 1) / rate)) * rate * (-1.0);
+      }
+
+    }
+    function RATE(periods, payment, present, future, type, guess) {
+      guess = (guess === undefined) ? 0.01 : guess;
+      future = (future === undefined) ? 0 : future;
+      type = (type === undefined) ? 0 : type;
+    
+      // Set maximum epsilon for end of iteration
+      var epsMax = 1e-10;
+    
+      // Set maximum number of iterations
+      var iterMax = 10;
+    
+      // Implement Newton's method
+      var y, y0, y1, x0, x1 = 0,
+        f = 0,
+        i = 0;
+      var rate = guess;
+      if (Math.abs(rate) < epsMax) {
+        y = present * (1 + periods * rate) + payment * (1 + rate * type) * periods + future;
+      } else {
+        f = Math.exp(periods * Math.log(1 + rate));
+        y = present * f + payment * (1 / rate + type) * (f - 1) + future;
+      }
+      y0 = present + payment * periods + future;
+      y1 = present * f + payment * (1 / rate + type) * (f - 1) + future;
+      i = x0 = 0;
+      x1 = rate;
+      while ((Math.abs(y0 - y1) > epsMax) && (i < iterMax)) {
+        rate = (y1 * x0 - y0 * x1) / (y1 - y0);
+        x0 = x1;
+        x1 = rate;
+          if (Math.abs(rate) < epsMax) {
+            y = present * (1 + periods * rate) + payment * (1 + rate * type) * periods + future;
+          } else {
+            f = Math.exp(periods * Math.log(1 + rate));
+            y = present * f + payment * (1 / rate + type) * (f - 1) + future;
+          }
+        y0 = y1;
+        y1 = y;
+        ++i;
+      }
+      return rate;
+    };
+
+    function vlookup_kebawah(input, array_table_in, array_table_out) {
+      for (var i = array_table_in.length; i > 0 ; i--) {
+        if (array_table_in[i] <= input) {
+          return array_table_out[i];
+        }
+      }
+    }
+    function vlookup_keatas(input, array_table_in, array_table_out) {
+      for (var i = 0; i < array_table_in.length; i++) {
+        if (array_table_in[i] >= input) {
+          return array_table_out[i];
+        }
+      }
+    }
+  </script>
+
+
+  </body>
+</html>
